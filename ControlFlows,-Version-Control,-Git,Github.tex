@@ -1,0 +1,2160 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Control Flow, Version Control, Git \& GitHub with R Programming},
+  pdfauthor={Cathrine Kanini},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Control Flow, Version Control, Git \& GitHub with R Programming}
+\author{Cathrine Kanini}
+\date{2026-01-19}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Part 1: Control Flow in R
+Programming}\label{part-1-control-flow-in-r-programming}
+
+Control flow structures allow us to control the execution of code based
+on conditions and repetitions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Decision Making
+Structures}\label{decision-making-structures}
+
+Decision making in programming allows us to control the flow of
+execution based on specific conditions. In R, various decision-making
+structures help us execute statements conditionally. These include:
+
+\subsubsection{1.1 if Statement}\label{if-statement}
+
+The \texttt{if} statement evaluates a condition and executes code only
+if the condition is TRUE.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+  \CommentTok{\# execute this code}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{76}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{67}
+
+\ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textgreater{}}\NormalTok{ b) \{}
+\NormalTok{  c }\OtherTok{\textless{}{-}}\NormalTok{ a }\SpecialCharTok{{-}}\NormalTok{ b}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textgreater{} b is TRUE"}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Difference between a, b is:"}\NormalTok{, c))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "condition a > b is TRUE"
+#> [1] "Difference between a, b is: 9"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textless{}}\NormalTok{ b) \{}
+\NormalTok{  c }\OtherTok{\textless{}{-}}\NormalTok{ a }\SpecialCharTok{{-}}\NormalTok{ b}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textless{} b is TRUE"}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Difference between a, b is:"}\NormalTok{, c))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Key Points:}
+
+\begin{itemize}
+\tightlist
+\item
+  Only executes when condition is TRUE
+\item
+  No alternative action if FALSE
+\item
+  Can have multiple independent if statements
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{1.2 if-else Statement}\label{if-else-statement}
+
+The \texttt{if-else} statement provides an alternative action when the
+condition is FALSE.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+  \CommentTok{\# execute if TRUE}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \CommentTok{\# execute if FALSE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{67}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{76}
+
+\ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textgreater{}}\NormalTok{ b) \{}
+\NormalTok{  c }\OtherTok{\textless{}{-}}\NormalTok{ a }\SpecialCharTok{{-}}\NormalTok{ b}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textgreater{} b is TRUE"}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Difference between a, b is:"}\NormalTok{, c))}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  c }\OtherTok{\textless{}{-}}\NormalTok{ a }\SpecialCharTok{{-}}\NormalTok{ b}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textgreater{} b is FALSE"}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Difference between a, b is:"}\NormalTok{, c))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "condition a > b is FALSE"
+#> [1] "Difference between a, b is: -9"
+\end{verbatim}
+
+\textbf{Practical Example: Grade Classification}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score }\OtherTok{\textless{}{-}} \DecValTok{85}
+
+\ControlFlowTok{if}\NormalTok{ (score }\SpecialCharTok{\textgreater{}=} \DecValTok{90}\NormalTok{) \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"A"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"B or lower"}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Your grade is:"}\NormalTok{, grade))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Your grade is: B or lower"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{1.3 if-else-if Ladder}\label{if-else-if-ladder}
+
+Multiple conditions are evaluated sequentially until one is TRUE.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (condition1) \{}
+  \CommentTok{\# execute if condition1 is TRUE}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (condition2) \{}
+  \CommentTok{\# execute if condition2 is TRUE}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \CommentTok{\# execute if all conditions are FALSE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{67}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{76}
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{99}
+
+\ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textgreater{}}\NormalTok{ b }\SpecialCharTok{\&\&}\NormalTok{ b }\SpecialCharTok{\textgreater{}}\NormalTok{ c) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textgreater{} b \textgreater{} c is TRUE"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textless{}}\NormalTok{ b }\SpecialCharTok{\&\&}\NormalTok{ b }\SpecialCharTok{\textgreater{}}\NormalTok{ c) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textless{} b \textgreater{} c is TRUE"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{\textless{}}\NormalTok{ b }\SpecialCharTok{\&\&}\NormalTok{ b }\SpecialCharTok{\textless{}}\NormalTok{ c) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"condition a \textless{} b \textless{} c is TRUE"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "condition a < b < c is TRUE"
+\end{verbatim}
+
+\textbf{Practical Example: Complete Grade System}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score }\OtherTok{\textless{}{-}} \DecValTok{78}
+
+\ControlFlowTok{if}\NormalTok{ (score }\SpecialCharTok{\textgreater{}=} \DecValTok{90}\NormalTok{) \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"A"}
+\NormalTok{  message }\OtherTok{\textless{}{-}} \StringTok{"Excellent!"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (score }\SpecialCharTok{\textgreater{}=} \DecValTok{80}\NormalTok{) \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"B"}
+\NormalTok{  message }\OtherTok{\textless{}{-}} \StringTok{"Very Good!"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (score }\SpecialCharTok{\textgreater{}=} \DecValTok{70}\NormalTok{) \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"C"}
+\NormalTok{  message }\OtherTok{\textless{}{-}} \StringTok{"Good!"}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (score }\SpecialCharTok{\textgreater{}=} \DecValTok{60}\NormalTok{) \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"D"}
+\NormalTok{  message }\OtherTok{\textless{}{-}} \StringTok{"Pass"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  grade }\OtherTok{\textless{}{-}} \StringTok{"F"}
+\NormalTok{  message }\OtherTok{\textless{}{-}} \StringTok{"Fail"}
+\NormalTok{\}}
+
+\FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Score: \%d}\SpecialCharTok{\textbackslash{}n}\StringTok{Grade: \%s}\SpecialCharTok{\textbackslash{}n}\StringTok{\%s}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, score, grade, message))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> Score: 78
+#> Grade: C
+#> Good!
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{1.4 Nested if-else
+Statement}\label{nested-if-else-statement}
+
+An if-else statement inside another if-else statement.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (parent\_condition) \{}
+  \ControlFlowTok{if}\NormalTok{ (child\_condition1) \{}
+    \CommentTok{\# code}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \CommentTok{\# code}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \ControlFlowTok{if}\NormalTok{ (child\_condition2) \{}
+    \CommentTok{\# code}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \CommentTok{\# code}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{11}
+
+\ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{==} \DecValTok{10}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (b }\SpecialCharTok{==} \DecValTok{10}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"a:10 b:10"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"a:10 b:11"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \ControlFlowTok{if}\NormalTok{ (a }\SpecialCharTok{==} \DecValTok{11}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"a:11 b:10"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"a:11 b:11"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "a:10 b:11"
+\end{verbatim}
+
+\textbf{Practical Example: Login System}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{username }\OtherTok{\textless{}{-}} \StringTok{"admin"}
+\NormalTok{password }\OtherTok{\textless{}{-}} \StringTok{"pass123"}
+
+\ControlFlowTok{if}\NormalTok{ (username }\SpecialCharTok{==} \StringTok{"admin"}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (password }\SpecialCharTok{==} \StringTok{"pass123"}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"✓ Login successful!"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"✗ Incorrect password"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \ControlFlowTok{if}\NormalTok{ (username }\SpecialCharTok{==} \StringTok{""}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"✗ Username cannot be empty"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"✗ User not found"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "✓ Login successful!"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{1.5 switch Statement}\label{switch-statement}
+
+Compares an expression against multiple cases and executes matching
+code.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{switch}\NormalTok{(expression, }
+       \AttributeTok{case1 =}\NormalTok{ result1,}
+       \AttributeTok{case2 =}\NormalTok{ result2,}
+\NormalTok{       default\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example with Numbers:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{day\_num }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+\NormalTok{day\_name }\OtherTok{\textless{}{-}} \ControlFlowTok{switch}\NormalTok{(day\_num,}
+                   \StringTok{"1"} \OtherTok{=} \StringTok{"Monday"}\NormalTok{,}
+                   \StringTok{"2"} \OtherTok{=} \StringTok{"Tuesday"}\NormalTok{,}
+                   \StringTok{"3"} \OtherTok{=} \StringTok{"Wednesday"}\NormalTok{,}
+                   \StringTok{"4"} \OtherTok{=} \StringTok{"Thursday"}\NormalTok{,}
+                   \StringTok{"5"} \OtherTok{=} \StringTok{"Friday"}\NormalTok{,}
+                   \StringTok{"6"} \OtherTok{=} \StringTok{"Saturday"}\NormalTok{,}
+                   \StringTok{"7"} \OtherTok{=} \StringTok{"Sunday"}\NormalTok{,}
+                   \StringTok{"Invalid day"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Day"}\NormalTok{, day\_num, }\StringTok{"is"}\NormalTok{, day\_name))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Day 3 is Wednesday"
+\end{verbatim}
+
+\textbf{Example with Characters:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{operation }\OtherTok{\textless{}{-}} \StringTok{"add"}
+
+\NormalTok{result }\OtherTok{\textless{}{-}} \ControlFlowTok{switch}\NormalTok{(operation,}
+                 \StringTok{"add"} \OtherTok{=} \DecValTok{5} \SpecialCharTok{+} \DecValTok{3}\NormalTok{,}
+                 \StringTok{"subtract"} \OtherTok{=} \DecValTok{5} \SpecialCharTok{{-}} \DecValTok{3}\NormalTok{,}
+                 \StringTok{"multiply"} \OtherTok{=} \DecValTok{5} \SpecialCharTok{*} \DecValTok{3}\NormalTok{,}
+                 \StringTok{"divide"} \OtherTok{=} \DecValTok{5} \SpecialCharTok{/} \DecValTok{3}\NormalTok{,}
+                 \StringTok{"Unknown operation"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Result:"}\NormalTok{, result))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Result: 8"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Loops in R}\label{loops-in-r}
+
+Loops allow repetitive execution of code blocks.
+
+\subsubsection{2.1 for Loop}\label{for-loop}
+
+Used when the number of iterations is known beforehand.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (value }\ControlFlowTok{in}\NormalTok{ sequence) \{}
+  \CommentTok{\# code to execute}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example 1: Simple Sequence}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (val }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(val)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
+\end{verbatim}
+
+\textbf{Example 2: Days of the Week}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{week }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Sunday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Monday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Tuesday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Wednesday\textquotesingle{}}\NormalTok{, }
+          \StringTok{\textquotesingle{}Thursday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Friday\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Saturday\textquotesingle{}}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (day }\ControlFlowTok{in}\NormalTok{ week) \{}
+  \FunctionTok{print}\NormalTok{(day)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Sunday"
+#> [1] "Monday"
+#> [1] "Tuesday"
+#> [1] "Wednesday"
+#> [1] "Thursday"
+#> [1] "Friday"
+#> [1] "Saturday"
+\end{verbatim}
+
+\textbf{Example 3: Loop on a List}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(my\_list)) \{}
+\NormalTok{  current\_element }\OtherTok{\textless{}{-}}\NormalTok{ my\_list[[i]]}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Element"}\NormalTok{, i, }\StringTok{"is:"}\NormalTok{, current\_element))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Element 1 is: 1"
+#> [1] "Element 2 is: 2"
+#> [1] "Element 3 is: 3"
+#> [1] "Element 4 is: 4"
+#> [1] "Element 5 is: 5"
+\end{verbatim}
+
+\textbf{Example 4: Loop on a Matrix}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Matrix:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Matrix:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(my\_matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>      [,1] [,2] [,3]
+#> [1,]    1    4    7
+#> [2,]    2    5    8
+#> [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Iterating through matrix:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Iterating through matrix:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(my\_matrix))) \{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(my\_matrix))) \{}
+\NormalTok{    current\_element }\OtherTok{\textless{}{-}}\NormalTok{ my\_matrix[i, j]}
+    \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Position [\%d,\%d] = \%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, i, j, current\_element))}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> Position [1,1] = 1
+#> Position [1,2] = 4
+#> Position [1,3] = 7
+#> Position [2,1] = 2
+#> Position [2,2] = 5
+#> Position [2,3] = 8
+#> Position [3,1] = 3
+#> Position [3,2] = 6
+#> Position [3,3] = 9
+\end{verbatim}
+
+\textbf{Example 5: Loop on a Data Frame}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_dataframe }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Joy"}\NormalTok{, }\StringTok{"Juliya"}\NormalTok{, }\StringTok{"Boby"}\NormalTok{, }\StringTok{"Marry"}\NormalTok{),}
+  \AttributeTok{Age =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{55}\NormalTok{),}
+  \AttributeTok{Gender =} \FunctionTok{c}\NormalTok{(}\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(}\StringTok{"Data Frame:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Data Frame:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(my\_dataframe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>     Name Age Gender
+#> 1    Joy  40      M
+#> 2 Juliya  25      F
+#> 3   Boby  19      M
+#> 4  Marry  55      F
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Iterating through rows:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Iterating through rows:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(my\_dataframe))) \{}
+\NormalTok{  current\_row }\OtherTok{\textless{}{-}}\NormalTok{ my\_dataframe[i, ]}
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Row \%d: \%s, Age \%d, Gender \%s}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }
+\NormalTok{              i, current\_row}\SpecialCharTok{$}\NormalTok{Name, current\_row}\SpecialCharTok{$}\NormalTok{Age, current\_row}\SpecialCharTok{$}\NormalTok{Gender))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> Row 1: Joy, Age 40, Gender M
+#> Row 2: Juliya, Age 25, Gender F
+#> Row 3: Boby, Age 19, Gender M
+#> Row 4: Marry, Age 55, Gender F
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2.2 while Loop}\label{while-loop}
+
+Runs as long as a condition is TRUE. Number of iterations unknown
+beforehand.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{while}\NormalTok{ (condition) \{}
+  \CommentTok{\# code to execute}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example 1: Display Numbers 1 to 5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{val }\OtherTok{\textless{}{-}} \DecValTok{1}
+\ControlFlowTok{while}\NormalTok{ (val }\SpecialCharTok{\textless{}=} \DecValTok{5}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(val)}
+\NormalTok{  val }\OtherTok{\textless{}{-}}\NormalTok{ val }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
+\end{verbatim}
+
+\textbf{Example 2: Calculate Factorial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{factorial }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{i }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\ControlFlowTok{while}\NormalTok{ (i }\SpecialCharTok{\textless{}=}\NormalTok{ n) \{}
+\NormalTok{  factorial }\OtherTok{\textless{}{-}}\NormalTok{ factorial }\SpecialCharTok{*}\NormalTok{ i}
+\NormalTok{  i }\OtherTok{\textless{}{-}}\NormalTok{ i }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Factorial of"}\NormalTok{, n, }\StringTok{"is"}\NormalTok{, factorial))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Factorial of 5 is 120"
+\end{verbatim}
+
+\textbf{Example 3: Input Validation (Simulation)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{attempts }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{max\_attempts }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{success }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+
+\ControlFlowTok{while}\NormalTok{ (attempts }\SpecialCharTok{\textless{}}\NormalTok{ max\_attempts }\SpecialCharTok{\&\&} \SpecialCharTok{!}\NormalTok{success) \{}
+\NormalTok{  attempts }\OtherTok{\textless{}{-}}\NormalTok{ attempts }\SpecialCharTok{+} \DecValTok{1}
+  \CommentTok{\# Simulate user input (would normally use readline())}
+\NormalTok{  input\_value }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{), }\DecValTok{1}\NormalTok{)}
+  
+  \ControlFlowTok{if}\NormalTok{ (input\_value) \{}
+\NormalTok{    success }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"✓ Success on attempt"}\NormalTok{, attempts))}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"✗ Failed attempt"}\NormalTok{, attempts))}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "✓ Success on attempt 1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{success) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Maximum attempts reached!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2.3 repeat Loop}\label{repeat-loop}
+
+Executes indefinitely until explicitly stopped with \texttt{break}.
+
+\textbf{Syntax:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{repeat}\NormalTok{ \{}
+  \CommentTok{\# code to execute}
+  
+  \ControlFlowTok{if}\NormalTok{ (condition) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example 1: Display Numbers 1 to 5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{val }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\ControlFlowTok{repeat}\NormalTok{ \{}
+  \FunctionTok{print}\NormalTok{(val)}
+\NormalTok{  val }\OtherTok{\textless{}{-}}\NormalTok{ val }\SpecialCharTok{+} \DecValTok{1}
+  
+  \ControlFlowTok{if}\NormalTok{ (val }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
+\end{verbatim}
+
+\textbf{Example 2: Repeat Statement}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\ControlFlowTok{repeat}\NormalTok{ \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Geeks 4 geeks!"}\NormalTok{)}
+\NormalTok{  i }\OtherTok{\textless{}{-}}\NormalTok{ i }\SpecialCharTok{+} \DecValTok{1}
+  
+  \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{==} \DecValTok{5}\NormalTok{) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Geeks 4 geeks!"
+#> [1] "Geeks 4 geeks!"
+#> [1] "Geeks 4 geeks!"
+#> [1] "Geeks 4 geeks!"
+#> [1] "Geeks 4 geeks!"
+\end{verbatim}
+
+\textbf{Example 3: Menu System}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{counter }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\ControlFlowTok{repeat}\NormalTok{ \{}
+\NormalTok{  counter }\OtherTok{\textless{}{-}}\NormalTok{ counter }\SpecialCharTok{+} \DecValTok{1}
+  
+  \CommentTok{\# Simulate menu selection}
+\NormalTok{  choice }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+  
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Iteration \%d {-} Choice: \%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, counter, choice))}
+  
+  \ControlFlowTok{if}\NormalTok{ (choice }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Option 1 selected"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (choice }\SpecialCharTok{==} \DecValTok{2}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Option 2 selected"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (choice }\SpecialCharTok{==} \DecValTok{3}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Option 3 selected {-} Exiting"}\NormalTok{)}
+    \ControlFlowTok{break}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Invalid option"}\NormalTok{)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Safety break after 10 iterations}
+  \ControlFlowTok{if}\NormalTok{ (counter }\SpecialCharTok{\textgreater{}=} \DecValTok{10}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Max iterations reached"}\NormalTok{)}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Iteration 1 - Choice: 4
+#> [1] "Invalid option"
+#> 
+#> Iteration 2 - Choice: 2
+#> [1] "Option 2 selected"
+#> 
+#> Iteration 3 - Choice: 2
+#> [1] "Option 2 selected"
+#> 
+#> Iteration 4 - Choice: 3
+#> [1] "Option 3 selected - Exiting"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Loop Control Statements}\label{loop-control-statements}
+
+\subsubsection{3.1 break Statement}\label{break-statement}
+
+Exits the loop immediately.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{==} \DecValTok{6}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Breaking at 6"}\NormalTok{)}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+  \FunctionTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
+#> [1] "Breaking at 6"
+\end{verbatim}
+
+\subsubsection{3.2 next Statement}\label{next-statement}
+
+Skips the current iteration and continues with the next.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (i }\SpecialCharTok{\%\%} \DecValTok{2} \SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+    \ControlFlowTok{next}  \CommentTok{\# Skip even numbers}
+\NormalTok{  \}}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Odd number:"}\NormalTok{, i))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "Odd number: 1"
+#> [1] "Odd number: 3"
+#> [1] "Odd number: 5"
+#> [1] "Odd number: 7"
+#> [1] "Odd number: 9"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Part 2: Version Control
+Systems}\label{part-2-version-control-systems}
+
+\subsection{What is Version Control?}\label{what-is-version-control}
+
+A \textbf{Version Control System (VCS)} is a tool that tracks and
+manages changes to source code over time. It enables:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Change Tracking}: Record every modification to files
+\item
+  \textbf{Collaboration}: Multiple developers working simultaneously
+\item
+  \textbf{History Management}: Access to complete project evolution
+\item
+  \textbf{Reversion}: Ability to restore previous versions
+\item
+  \textbf{Branching}: Parallel development of features
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Components of Version Control
+Systems}\label{components-of-version-control-systems}
+
+\subsubsection{Key Concepts}\label{key-concepts}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Repository}: Central storage for all project files and their
+  complete history
+\item
+  \textbf{Revision}: A specific saved version of files (identified by
+  unique ID/hash)
+\item
+  \textbf{Branch}: Separate line of development for features or fixes
+\item
+  \textbf{Merging}: Combining changes from different branches
+\item
+  \textbf{Commit}: Snapshot of changes at a specific point in time
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Types of Version Control
+Systems}\label{types-of-version-control-systems}
+
+\subsubsection{1. Local Version Control
+Systems}\label{local-version-control-systems}
+
+\begin{itemize}
+\tightlist
+\item
+  Operates entirely on local machine
+\item
+  All history stored in local database
+\item
+  \textbf{Pros}: Simple, no network needed
+\item
+  \textbf{Cons}: No collaboration, single point of failure
+\end{itemize}
+
+\subsubsection{2. Centralized Version Control Systems
+(CVCS)}\label{centralized-version-control-systems-cvcs}
+
+Examples: \textbf{SVN (Subversion)}, CVS
+
+\textbf{Architecture:} - Single central server stores all files -
+Developers check out files from central location - Changes committed
+directly to central server
+
+\textbf{Workflow:} 1. \textbf{Checkout/Update}: Get latest files from
+server 2. \textbf{Make Changes}: Edit files locally 3. \textbf{Commit}:
+Save changes to central server
+
+\textbf{Pros:} - Easy to understand and manage - Fine-grained access
+control - Everyone sees what others are doing
+
+\textbf{Cons:} - Single point of failure (server down = no work) -
+Requires network connection - Limited offline capabilities
+
+\subsubsection{3. Distributed Version Control Systems
+(DVCS)}\label{distributed-version-control-systems-dvcs}
+
+Examples: \textbf{Git}, Mercurial, Bazaar
+
+\textbf{Architecture:} - Every developer has full repository copy -
+Complete history available locally - Changes shared through push/pull
+
+\textbf{Workflow:} 1. \textbf{Commit}: Save changes to local repository
+2. \textbf{Push}: Upload changes to remote repository 3.
+\textbf{Pull/Fetch}: Download changes from remote repository
+
+\textbf{Pros:} - Fast operations (local) - Work offline - Multiple
+backup copies - Flexible workflows - No single point of failure
+
+\textbf{Cons:} - Steeper learning curve - More complex commands
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Popular Version Control
+Systems}\label{popular-version-control-systems}
+
+\subsubsection{1. Git ⭐ (Most Popular)}\label{git-most-popular}
+
+\begin{itemize}
+\tightlist
+\item
+  Created by Linus Torvalds (2005)
+\item
+  Distributed VCS
+\item
+  Fast, efficient, lightweight
+\item
+  Excellent branching and merging
+\item
+  Powers GitHub, GitLab, Bitbucket
+\end{itemize}
+
+\subsubsection{2. Subversion (SVN)}\label{subversion-svn}
+
+\begin{itemize}
+\tightlist
+\item
+  Centralized VCS
+\item
+  Still widely used in enterprises
+\item
+  Simpler than Git for basic use
+\item
+  Good for binary files
+\end{itemize}
+
+\subsubsection{3. Mercurial}\label{mercurial}
+
+\begin{itemize}
+\tightlist
+\item
+  Distributed VCS like Git
+\item
+  Simpler interface than Git
+\item
+  Good for large projects
+\item
+  Used by Facebook, Mozilla (historically)
+\end{itemize}
+
+\subsubsection{4. CVS (Concurrent Versions
+System)}\label{cvs-concurrent-versions-system}
+
+\begin{itemize}
+\tightlist
+\item
+  One of the earliest VCS
+\item
+  Centralized system
+\item
+  Legacy system (mostly replaced)
+\item
+  Historical importance
+\end{itemize}
+
+\subsubsection{5. Bazaar}\label{bazaar}
+
+\begin{itemize}
+\tightlist
+\item
+  Developed by Canonical (Ubuntu creators)
+\item
+  Supports both centralized and distributed workflows
+\item
+  Beginner-friendly
+\item
+  No longer actively developed
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Part 3: Git - The Complete
+Guide}\label{part-3-git---the-complete-guide}
+
+\subsection{1. Introduction to Git}\label{introduction-to-git}
+
+\textbf{Git} is an open-source \textbf{distributed version control
+system} designed for:
+
+\begin{itemize}
+\tightlist
+\item
+  Tracking source code changes
+\item
+  Coordinating work among multiple developers
+\item
+  Managing project versions
+\item
+  Supporting non-linear development (branching)
+\end{itemize}
+
+\textbf{Created by}: Linus Torvalds (2005)\\
+\textbf{Purpose}: Managing Linux kernel development\\
+\textbf{License}: GPL v2 (Free and Open Source)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Core Git Concepts}\label{core-git-concepts}
+
+\subsubsection{Three States of Files}\label{three-states-of-files}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Working Directory}: Where you edit files
+\item
+  \textbf{Staging Area (Index)}: Files marked for next commit
+\item
+  \textbf{Repository (.git directory)}: Committed and saved permanently
+\end{enumerate}
+
+\begin{verbatim}
+Working Directory → (git add) → Staging Area → (git commit) → Repository
+\end{verbatim}
+
+\subsubsection{Repository Types}\label{repository-types}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Local Repository}: On your machine
+\item
+  \textbf{Remote Repository}: Hosted server (GitHub, GitLab)
+\item
+  \textbf{Bare Repository}: No working directory (central repos)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Git Environment Setup}\label{git-environment-setup}
+
+\subsubsection{Installation}\label{installation}
+
+\textbf{Windows}: Download Git for Windows (includes Git Bash)\\
+\textbf{Mac}: \texttt{brew\ install\ git} or download from git-scm.com\\
+\textbf{Linux}: \texttt{sudo\ apt-get\ install\ git} (Ubuntu/Debian)
+
+\subsubsection{Initial Configuration}\label{initial-configuration}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set username}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.name }\StringTok{"Your Name"}
+
+\CommentTok{\# Set email}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ user.email }\StringTok{"your.email@example.com"}
+
+\CommentTok{\# Check configuration}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}list}
+
+\CommentTok{\# Set default editor}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ core.editor }\StringTok{"vim"}
+
+\CommentTok{\# Set default branch name}
+\FunctionTok{git}\NormalTok{ config }\AttributeTok{{-}{-}global}\NormalTok{ init.defaultBranch main}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Basic Git Commands}\label{basic-git-commands}
+
+\subsubsection{Initializing a
+Repository}\label{initializing-a-repository}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create new repository}
+\FunctionTok{git}\NormalTok{ init}
+
+\CommentTok{\# Clone existing repository}
+\FunctionTok{git}\NormalTok{ clone }\OperatorTok{\textless{}}\NormalTok{repository{-}url}\OperatorTok{\textgreater{}}
+\FunctionTok{git}\NormalTok{ clone https://github.com/username/repo.git}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Checking Status}\label{checking-status}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# View status of files}
+\FunctionTok{git}\NormalTok{ status}
+
+\CommentTok{\# Short status}
+\FunctionTok{git}\NormalTok{ status }\AttributeTok{{-}s}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Adding Files to Staging}\label{adding-files-to-staging}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Add specific file}
+\FunctionTok{git}\NormalTok{ add filename.R}
+
+\CommentTok{\# Add all files}
+\FunctionTok{git}\NormalTok{ add .}
+
+\CommentTok{\# Add all R files}
+\FunctionTok{git}\NormalTok{ add }\PreprocessorTok{*}\NormalTok{.R}
+
+\CommentTok{\# Add files interactively}
+\FunctionTok{git}\NormalTok{ add }\AttributeTok{{-}i}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Committing Changes}\label{committing-changes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Commit with message}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Your commit message"}
+
+\CommentTok{\# Commit all tracked files (skip staging)}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}a} \AttributeTok{{-}m} \StringTok{"Commit message"}
+
+\CommentTok{\# Amend last commit}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}{-}amend} \AttributeTok{{-}m} \StringTok{"Updated message"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Viewing History}\label{viewing-history}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# View commit history}
+\FunctionTok{git}\NormalTok{ log}
+
+\CommentTok{\# Compact view}
+\FunctionTok{git}\NormalTok{ log }\AttributeTok{{-}{-}oneline}
+
+\CommentTok{\# View last 5 commits}
+\FunctionTok{git}\NormalTok{ log }\AttributeTok{{-}5}
+
+\CommentTok{\# View with graph}
+\FunctionTok{git}\NormalTok{ log }\AttributeTok{{-}{-}graph} \AttributeTok{{-}{-}oneline} \AttributeTok{{-}{-}all}
+
+\CommentTok{\# View specific file history}
+\FunctionTok{git}\NormalTok{ log }\AttributeTok{{-}{-}}\NormalTok{ filename.R}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Working with Remote
+Repositories}\label{working-with-remote-repositories}
+
+\subsubsection{Managing Remotes}\label{managing-remotes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# View remote repositories}
+\FunctionTok{git}\NormalTok{ remote }\AttributeTok{{-}v}
+
+\CommentTok{\# Add remote repository}
+\FunctionTok{git}\NormalTok{ remote add origin https://github.com/username/repo.git}
+
+\CommentTok{\# Remove remote}
+\FunctionTok{git}\NormalTok{ remote remove origin}
+
+\CommentTok{\# Rename remote}
+\FunctionTok{git}\NormalTok{ remote rename origin upstream}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Pushing Changes}\label{pushing-changes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Push to remote}
+\FunctionTok{git}\NormalTok{ push origin main}
+
+\CommentTok{\# Push and set upstream}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}u}\NormalTok{ origin main}
+
+\CommentTok{\# Push all branches}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}{-}all}
+
+\CommentTok{\# Force push (use with caution!)}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}{-}force}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Pulling Changes}\label{pulling-changes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fetch and merge changes}
+\FunctionTok{git}\NormalTok{ pull origin main}
+
+\CommentTok{\# Fetch without merging}
+\FunctionTok{git}\NormalTok{ fetch origin}
+
+\CommentTok{\# Pull with rebase}
+\FunctionTok{git}\NormalTok{ pull }\AttributeTok{{-}{-}rebase}\NormalTok{ origin main}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Branching and Merging}\label{branching-and-merging}
+
+\subsubsection{Branch Management}\label{branch-management}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create new branch}
+\FunctionTok{git}\NormalTok{ branch feature{-}branch}
+
+\CommentTok{\# Switch to branch}
+\FunctionTok{git}\NormalTok{ checkout feature{-}branch}
+
+\CommentTok{\# Create and switch (shortcut)}
+\FunctionTok{git}\NormalTok{ checkout }\AttributeTok{{-}b}\NormalTok{ feature{-}branch}
+
+\CommentTok{\# Modern way (Git 2.23+)}
+\FunctionTok{git}\NormalTok{ switch feature{-}branch}
+\FunctionTok{git}\NormalTok{ switch }\AttributeTok{{-}c}\NormalTok{ new{-}branch}
+
+\CommentTok{\# List branches}
+\FunctionTok{git}\NormalTok{ branch}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}a}  \CommentTok{\# include remote branches}
+
+\CommentTok{\# Delete branch}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}d}\NormalTok{ feature{-}branch}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}D}\NormalTok{ feature{-}branch  }\CommentTok{\# force delete}
+
+\CommentTok{\# Delete remote branch}
+\FunctionTok{git}\NormalTok{ push origin }\AttributeTok{{-}{-}delete}\NormalTok{ feature{-}branch}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Merging}\label{merging}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Merge branch into current branch}
+\FunctionTok{git}\NormalTok{ merge feature{-}branch}
+
+\CommentTok{\# Merge without fast{-}forward}
+\FunctionTok{git}\NormalTok{ merge }\AttributeTok{{-}{-}no{-}ff}\NormalTok{ feature{-}branch}
+
+\CommentTok{\# Abort merge}
+\FunctionTok{git}\NormalTok{ merge }\AttributeTok{{-}{-}abort}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Handling Merge Conflicts}\label{handling-merge-conflicts}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. Git will mark conflicts in files}
+\CommentTok{\# 2. Open conflicted files and resolve manually}
+\CommentTok{\# 3. Add resolved files}
+\FunctionTok{git}\NormalTok{ add resolved{-}file.R}
+
+\CommentTok{\# 4. Complete merge}
+\FunctionTok{git}\NormalTok{ commit}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Rebasing}\label{rebasing}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rebase current branch onto main}
+\FunctionTok{git}\NormalTok{ rebase main}
+
+\CommentTok{\# Interactive rebase (last 3 commits)}
+\FunctionTok{git}\NormalTok{ rebase }\AttributeTok{{-}i}\NormalTok{ HEAD\textasciitilde{}3}
+
+\CommentTok{\# Continue after resolving conflicts}
+\FunctionTok{git}\NormalTok{ rebase }\AttributeTok{{-}{-}continue}
+
+\CommentTok{\# Abort rebase}
+\FunctionTok{git}\NormalTok{ rebase }\AttributeTok{{-}{-}abort}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Advanced Git Commands}\label{advanced-git-commands}
+
+\subsubsection{Viewing Differences}\label{viewing-differences}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changes in working directory}
+\FunctionTok{git}\NormalTok{ diff}
+
+\CommentTok{\# Changes in staging area}
+\FunctionTok{git}\NormalTok{ diff }\AttributeTok{{-}{-}staged}
+
+\CommentTok{\# Difference between branches}
+\FunctionTok{git}\NormalTok{ diff main feature{-}branch}
+
+\CommentTok{\# Difference for specific file}
+\FunctionTok{git}\NormalTok{ diff filename.R}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Undoing Changes}\label{undoing-changes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Discard changes in working directory}
+\FunctionTok{git}\NormalTok{ restore filename.R}
+\FunctionTok{git}\NormalTok{ checkout }\AttributeTok{{-}{-}}\NormalTok{ filename.R  }\CommentTok{\# old way}
+
+\CommentTok{\# Unstage file}
+\FunctionTok{git}\NormalTok{ restore }\AttributeTok{{-}{-}staged}\NormalTok{ filename.R}
+\FunctionTok{git}\NormalTok{ reset HEAD filename.R  }\CommentTok{\# old way}
+
+\CommentTok{\# Revert a commit}
+\FunctionTok{git}\NormalTok{ revert }\OperatorTok{\textless{}}\NormalTok{commit{-}hash}\OperatorTok{\textgreater{}}
+
+\CommentTok{\# Reset to previous commit}
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}soft}\NormalTok{ HEAD\textasciitilde{}1  }\CommentTok{\# keep changes}
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}mixed}\NormalTok{ HEAD\textasciitilde{}1  }\CommentTok{\# unstage changes}
+\FunctionTok{git}\NormalTok{ reset }\AttributeTok{{-}{-}hard}\NormalTok{ HEAD\textasciitilde{}1  }\CommentTok{\# discard changes (⚠️ dangerous!)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Stashing Changes}\label{stashing-changes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Save work temporarily}
+\FunctionTok{git}\NormalTok{ stash}
+
+\CommentTok{\# List stashes}
+\FunctionTok{git}\NormalTok{ stash list}
+
+\CommentTok{\# Apply latest stash}
+\FunctionTok{git}\NormalTok{ stash apply}
+
+\CommentTok{\# Apply and remove stash}
+\FunctionTok{git}\NormalTok{ stash pop}
+
+\CommentTok{\# Stash with message}
+\FunctionTok{git}\NormalTok{ stash save }\StringTok{"Work in progress"}
+
+\CommentTok{\# Clear all stashes}
+\FunctionTok{git}\NormalTok{ stash clear}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Tagging}\label{tagging}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create lightweight tag}
+\FunctionTok{git}\NormalTok{ tag v1.0}
+
+\CommentTok{\# Create annotated tag}
+\FunctionTok{git}\NormalTok{ tag }\AttributeTok{{-}a}\NormalTok{ v1.0 }\AttributeTok{{-}m} \StringTok{"Version 1.0 release"}
+
+\CommentTok{\# List tags}
+\FunctionTok{git}\NormalTok{ tag}
+
+\CommentTok{\# Push tag to remote}
+\FunctionTok{git}\NormalTok{ push origin v1.0}
+
+\CommentTok{\# Push all tags}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}{-}tags}
+
+\CommentTok{\# Delete tag}
+\FunctionTok{git}\NormalTok{ tag }\AttributeTok{{-}d}\NormalTok{ v1.0}
+\FunctionTok{git}\NormalTok{ push origin }\AttributeTok{{-}{-}delete}\NormalTok{ v1.0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Git Best Practices}\label{git-best-practices}
+
+\subsubsection{Commit Messages}\label{commit-messages}
+
+\textbf{Good commit message format:}
+
+\begin{verbatim}
+Short summary (50 chars or less)
+
+Detailed explanation if needed. Wrap at 72 characters.
+Explain what and why, not how.
+
+- Bullet points are okay
+- Use present tense: "Add feature" not "Added feature"
+\end{verbatim}
+
+\textbf{Examples:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Add data validation function for user input"}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Fix bug in date parsing for CSV imports"}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Update README with installation instructions"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Branching Strategy}\label{branching-strategy}
+
+\textbf{Common strategies:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Git Flow}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{main}: Production code
+  \item
+    \texttt{develop}: Integration branch
+  \item
+    \texttt{feature/*}: New features
+  \item
+    \texttt{hotfix/*}: Emergency fixes
+  \end{itemize}
+\item
+  \textbf{GitHub Flow}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{main}: Always deployable
+  \item
+    \texttt{feature/*}: All development
+  \end{itemize}
+\item
+  \textbf{Trunk-Based Development}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{main}: Single integration branch
+  \item
+    Short-lived feature branches
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Git with R Programming}\label{git-with-r-programming}
+
+\subsubsection{Tracking R Projects}\label{tracking-r-projects}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Initialize R project with Git}
+\FunctionTok{git}\NormalTok{ init}
+
+\CommentTok{\# Create .gitignore for R}
+\BuiltInTok{echo} \StringTok{".Rproj.user}
+\StringTok{.Rhistory}
+\StringTok{.RData}
+\StringTok{.Ruserdata}
+\StringTok{*.Rproj}
+\StringTok{.DS\_Store"} \OperatorTok{\textgreater{}}\NormalTok{ .gitignore}
+
+\CommentTok{\# Add files}
+\FunctionTok{git}\NormalTok{ add .}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Initial commit of R project"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Example .gitignore for R
+Projects}\label{example-.gitignore-for-r-projects}
+
+\begin{verbatim}
+# R specific
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Data files (if large)
+*.csv
+*.xlsx
+data/
+
+# Output files
+*.pdf
+*.png
+figures/
+
+# OS specific
+.DS_Store
+Thumbs.db
+\end{verbatim}
+
+\subsubsection{Using Git with RStudio}\label{using-git-with-rstudio}
+
+RStudio has built-in Git integration:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Tools} → \textbf{Version Control} → \textbf{Project Setup}
+\item
+  Use Git pane for staging, committing
+\item
+  Visual diff viewer
+\item
+  Branch management
+\item
+  Push/pull buttons
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Part 4: GitHub}\label{part-4-github}
+
+\subsection{What is GitHub?}\label{what-is-github}
+
+\textbf{GitHub} is a web-based platform for hosting Git repositories and
+collaborating on code.
+
+\subsubsection{Git vs GitHub}\label{git-vs-github}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Feature & Git & GitHub \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Type & Version control tool & Hosting service \\
+Location & Local computer & Cloud-based \\
+Purpose & Track changes & Collaboration platform \\
+Access & Command line/GUI & Web interface + Git \\
+Created by & Linus Torvalds & Chris Wanstrath, et al. \\
+Owned by & Linux community & Microsoft \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{GitHub Features}\label{github-features}
+
+\subsubsection{Core Features}\label{core-features}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Repository Hosting}: Store and manage Git repositories
+\item
+  \textbf{Collaboration}: Pull requests, code reviews
+\item
+  \textbf{Issue Tracking}: Bug reports, feature requests
+\item
+  \textbf{Project Management}: Kanban boards, milestones
+\item
+  \textbf{Actions}: CI/CD automation
+\item
+  \textbf{Pages}: Host static websites
+\item
+  \textbf{Wikis}: Documentation
+\item
+  \textbf{Security}: Dependency scanning, secret detection
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Working with GitHub}\label{working-with-github}
+
+\subsubsection{Creating a Repository}\label{creating-a-repository}
+
+\textbf{On GitHub:} 1. Click ``New repository'' 2. Enter repository name
+3. Add description (optional) 4. Choose public/private 5. Initialize
+with README (optional) 6. Add .gitignore template 7. Choose license 8.
+Click ``Create repository''
+
+\textbf{From Command Line:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create local repo}
+\FunctionTok{git}\NormalTok{ init}
+\FunctionTok{git}\NormalTok{ add .}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Initial commit"}
+
+\CommentTok{\# Connect to GitHub}
+\FunctionTok{git}\NormalTok{ remote add origin https://github.com/username/repo.git}
+\FunctionTok{git}\NormalTok{ push }\AttributeTok{{-}u}\NormalTok{ origin main}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Cloning a Repository}\label{cloning-a-repository}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Clone repository}
+\FunctionTok{git}\NormalTok{ clone https://github.com/username/repo.git}
+
+\CommentTok{\# Clone specific branch}
+\FunctionTok{git}\NormalTok{ clone }\AttributeTok{{-}b}\NormalTok{ branch{-}name https://github.com/username/repo.git}
+
+\CommentTok{\# Clone to specific folder}
+\FunctionTok{git}\NormalTok{ clone https://github.com/username/repo.git my{-}folder}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Forking Workflow}\label{forking-workflow}
+
+\textbf{Fork} = Personal copy of someone else's repository
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Click ``Fork'' on GitHub
+\item
+  Clone your fork
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/your{-}username/repo.git}
+\BuiltInTok{cd}\NormalTok{ repo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Add upstream remote
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ remote add upstream https://github.com/original{-}owner/repo.git}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Keep fork updated
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ fetch upstream}
+\FunctionTok{git}\NormalTok{ merge upstream/main}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Pull Requests}\label{pull-requests}
+
+\textbf{Creating a Pull Request:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create and push feature branch
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ checkout }\AttributeTok{{-}b}\NormalTok{ feature{-}branch}
+\CommentTok{\# make changes}
+\FunctionTok{git}\NormalTok{ push origin feature{-}branch}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Go to GitHub repository
+\item
+  Click ``New pull request''
+\item
+  Select base and compare branches
+\item
+  Add title and description
+\item
+  Click ``Create pull request''
+\end{enumerate}
+
+\textbf{Reviewing Pull Requests:} - Review code changes - Add comments -
+Approve or request changes - Merge when approved
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{GitHub Best Practices}\label{github-best-practices}
+
+\subsubsection{README.md Template}\label{readme.md-template}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\# Project Title}
+
+\NormalTok{Brief description of project}
+
+\FunctionTok{\#\# Installation}
+
+\SpecialCharTok{\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}}\NormalTok{r}
+\NormalTok{install.packages("packagename")}
+\SpecialCharTok{\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}}
+
+\FunctionTok{\#\# Usage}
+
+\SpecialCharTok{\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}}\NormalTok{r}
+\NormalTok{library(packagename)}
+\FunctionTok{\# example code}
+\SpecialCharTok{\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}\textbackslash{}\textasciigrave{}}
+
+\FunctionTok{\#\# Contributing}
+
+\NormalTok{Pull requests welcome!}
+
+\FunctionTok{\#\# License}
+
+\NormalTok{MIT License}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Contributing Guidelines}\label{contributing-guidelines}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Fork} the repository
+\item
+  \textbf{Create} feature branch
+  (\texttt{git\ checkout\ -b\ feature/AmazingFeature})
+\item
+  \textbf{Commit} changes
+  (\texttt{git\ commit\ -m\ \textquotesingle{}Add\ some\ AmazingFeature\textquotesingle{}})
+\item
+  \textbf{Push} to branch
+  (\texttt{git\ push\ origin\ feature/AmazingFeature})
+\item
+  \textbf{Open} Pull Request
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Part 5: Git in CI/CD and
+Deployment}\label{part-5-git-in-cicd-and-deployment}
+
+\subsection{Continuous Integration/Continuous
+Deployment}\label{continuous-integrationcontinuous-deployment}
+
+\subsubsection{What is CI/CD?}\label{what-is-cicd}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{CI}: Automatically test code when pushed
+\item
+  \textbf{CD}: Automatically deploy code when tests pass
+\end{itemize}
+
+\subsubsection{GitHub Actions Example}\label{github-actions-example}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# .github/workflows/r{-}check.yml}
+\FunctionTok{name}\KeywordTok{:}\AttributeTok{ R{-}CMD{-}check}
+
+\FunctionTok{on}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{push}\KeywordTok{,}\AttributeTok{ pull\_request}\KeywordTok{]}
+
+\FunctionTok{jobs}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{R{-}CMD{-}check}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{runs{-}on}\KeywordTok{:}\AttributeTok{ ubuntu{-}latest}
+\AttributeTok{    }\FunctionTok{steps}\KeywordTok{:}
+\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ actions/checkout@v2}
+\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ r{-}lib/actions/setup{-}r@v2}
+\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Install dependencies}
+\FunctionTok{        run}\KeywordTok{: }\CharTok{|}
+\NormalTok{          install.packages(c("remotes", "rcmdcheck"))}
+\AttributeTok{        }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
+\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Check}
+\AttributeTok{        }\FunctionTok{run}\KeywordTok{:}\AttributeTok{ rcmdcheck::rcmdcheck(args = "{-}{-}no{-}manual", error\_on = "error")}
+\AttributeTok{        }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Summary and Key Takeaways}\label{summary-and-key-takeaways}
+
+\subsection{Control Flow}\label{control-flow}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{if/else}: Decision making based on conditions
+\item
+  \textbf{for loop}: Known number of iterations
+\item
+  \textbf{while loop}: Condition-based repetition
+\item
+  \textbf{repeat loop}: Infinite loop with manual break
+\item
+  \textbf{switch}: Multiple case handling
+\end{itemize}
+
+\subsection{Version Control}\label{version-control}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Local VCS}: Single machine, no collaboration
+\item
+  \textbf{Centralized VCS}: Single server, central authority (SVN)
+\item
+  \textbf{Distributed VCS}: Multiple copies, flexible workflow (Git)
+\end{itemize}
+
+\subsection{Git Essentials}\label{git-essentials}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Basic workflow}
+\FunctionTok{git}\NormalTok{ init                    }\CommentTok{\# Initialize}
+\FunctionTok{git}\NormalTok{ add .                   }\CommentTok{\# Stage changes}
+\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"message"}     \CommentTok{\# Commit}
+\FunctionTok{git}\NormalTok{ push origin main        }\CommentTok{\# Push to remote}
+\FunctionTok{git}\NormalTok{ pull origin main        }\CommentTok{\# Pull from remote}
+
+\CommentTok{\# Branching}
+\FunctionTok{git}\NormalTok{ checkout }\AttributeTok{{-}b}\NormalTok{ feature     }\CommentTok{\# Create branch}
+\FunctionTok{git}\NormalTok{ merge feature           }\CommentTok{\# Merge branch}
+\FunctionTok{git}\NormalTok{ branch }\AttributeTok{{-}d}\NormalTok{ feature       }\CommentTok{\# Delete branch}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{GitHub Workflow}\label{github-workflow}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Fork} repository
+\item
+  \textbf{Clone} to local
+\item
+  \textbf{Branch} for features
+\item
+  \textbf{Commit} changes
+\item
+  \textbf{Push} to GitHub
+\item
+  \textbf{Pull Request} for review
+\item
+  \textbf{Merge} after approval
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Practical Exercises}\label{practical-exercises}
+
+\subsection{Exercise 1: Control Flow}\label{exercise-1-control-flow}
+
+Create a grade calculator that: - Takes a score input - Uses if-else-if
+to assign letter grade - Uses switch to assign GPA - Prints formatted
+result
+
+\subsection{Exercise 2: Loops}\label{exercise-2-loops}
+
+Write R code to: - Calculate Fibonacci sequence (for loop) - Find prime
+numbers (while loop) - Create menu system (repeat loop)
+
+\subsection{Exercise 3: Git Practice}\label{exercise-3-git-practice}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create new R project
+\item
+  Initialize Git repository
+\item
+  Create multiple commits
+\item
+  Create and merge feature branch
+\item
+  Push to GitHub
+\end{enumerate}
+
+\subsection{Exercise 4: Collaboration}\label{exercise-4-collaboration}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fork a public R repository
+\item
+  Clone to local
+\item
+  Create feature branch
+\item
+  Make improvements
+\item
+  Submit pull request
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Additional Resources}\label{additional-resources}
+
+\subsection{Documentation}\label{documentation}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://git-scm.com/doc}{Git Official Documentation}
+\item
+  \href{https://guides.github.com/}{GitHub Guides}
+\item
+  \href{https://r4ds.had.co.nz/}{R for Data Science}
+\item
+  \href{https://happygitwithr.com/}{Happy Git with R}
+\end{itemize}
+
+\subsection{Cheat Sheets}\label{cheat-sheets}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://education.github.com/git-cheat-sheet-education.pdf}{Git
+  Cheat Sheet}
+\item
+  \href{https://guides.github.com/introduction/flow/}{GitHub Flow}
+\item
+  \href{https://cran.r-project.org/doc/contrib/Short-refcard.pdf}{R
+  Programming Cheat Sheet}
+\end{itemize}
+
+\subsection{Online Tutorials}\label{online-tutorials}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://learngitbranching.js.org/}{Learn Git Branching}
+\item
+  \href{https://lab.github.com/}{GitHub Learning Lab}
+\item
+  \href{https://www.codecademy.com/learn/learn-git}{Codecademy Git
+  Course}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Session Info}
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> R version 4.5.2 (2025-10-31 ucrt)
+#> Platform: x86_64-w64-mingw32/x64
+#> Running under: Windows 11 x64 (build 26200)
+#> 
+#> Matrix products: default
+#>   LAPACK version 3.12.1
+#> 
+#> locale:
+#> [1] LC_COLLATE=English_Kenya.utf8  LC_CTYPE=English_Kenya.utf8   
+#> [3] LC_MONETARY=English_Kenya.utf8 LC_NUMERIC=C                  
+#> [5] LC_TIME=English_Kenya.utf8    
+#> 
+#> time zone: Africa/Nairobi
+#> tzcode source: internal
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] compiler_4.5.2    fastmap_1.2.0     cli_3.6.5         tools_4.5.2      
+#>  [5] htmltools_0.5.9   rstudioapi_0.17.1 yaml_2.3.12       rmarkdown_2.30   
+#>  [9] knitr_1.51        xfun_0.55         digest_0.6.39     rlang_1.1.6      
+#> [13] evaluate_1.0.5
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Notes}
+
+\emph{Created with R Markdown} 📝
+
+\end{document}

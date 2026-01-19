@@ -1,0 +1,29 @@
+knitr::opts_chunk$set(echo = TRUE)
+# Control Flow
+Decision Making in R Programming - if, if-else, if-else-if ladder, nested if-else, and switch
+# Control Flow
+Decision Making in R Programming: if, if-else, if-else-if ladder, nested if-else, and switch
+---
+title: "Practice"
+library(DBI)
+con <- dbConnect(odbc::odbc(), .connection_string = "Driver={SQL Server};", timeout = 10)
+knitr::opts_chunk$set(
+echo = TRUE,
+warning = FALSE,
+message = FALSE,
+comment = "#>",
+fig.width = 8,
+fig.height = 6
+)
+a <- 67
+b <- 76
+if (a > b) {
+c <- a - b
+print("condition a > b is TRUE")
+print(paste("Difference between a, b is:", c))
+} else {
+c <- a - b
+print("condition a > b is FALSE")
+print(paste("Difference between a, b is:", c))
+}
+library(tinytex)
