@@ -3,9 +3,6 @@ title: "Control Flow, Version Control, Git & GitHub with R Programming"
 author: "Cathrine Kanini"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 3
   html_document:
     toc: true
     toc_float: true
@@ -13,6 +10,12 @@ output:
     theme: cosmo
     highlight: tango
     code_folding: show
+  pdf_document:
+    toc: true
+    toc_depth: 3
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -28,18 +31,24 @@ knitr::opts_chunk$set(
 
 # Part 1: Control Flow in R Programming
 
-Control flow structures allow us to control the execution of code based on conditions and repetitions.
+Control flow structures allow us to control the execution of code based
+on conditions and repetitions.
 
----
+------------------------------------------------------------------------
 
 ## 1. Decision Making Structures
-Decision making in programming allows us to control the flow of execution based on specific conditions. In R, various decision-making structures help us execute statements conditionally. These include:
+
+Decision making in programming allows us to control the flow of
+execution based on specific conditions. In R, various decision-making
+structures help us execute statements conditionally. These include:
 
 ### 1.1 if Statement
 
-The `if` statement evaluates a condition and executes code only if the condition is TRUE.
+The `if` statement evaluates a condition and executes code only if the
+condition is TRUE.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 if (condition) {
   # execute this code
@@ -47,6 +56,7 @@ if (condition) {
 ```
 
 **Example:**
+
 ```{r}
 a <- 76
 b <- 67
@@ -66,17 +76,19 @@ if (a < b) {
 
 **Key Points:**
 
-- Only executes when condition is TRUE
-- No alternative action if FALSE
-- Can have multiple independent if statements
+-   Only executes when condition is TRUE
+-   No alternative action if FALSE
+-   Can have multiple independent if statements
 
----
+------------------------------------------------------------------------
 
 ### 1.2 if-else Statement
 
-The `if-else` statement provides an alternative action when the condition is FALSE.
+The `if-else` statement provides an alternative action when the
+condition is FALSE.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 if (condition) {
   # execute if TRUE
@@ -86,6 +98,7 @@ if (condition) {
 ```
 
 **Example:**
+
 ```{r}
 a <- 67
 b <- 76
@@ -102,6 +115,7 @@ if (a > b) {
 ```
 
 **Practical Example: Grade Classification**
+
 ```{r}
 score <- 85
 
@@ -114,13 +128,14 @@ if (score >= 90) {
 print(paste("Your grade is:", grade))
 ```
 
----
+------------------------------------------------------------------------
 
 ### 1.3 if-else-if Ladder
 
 Multiple conditions are evaluated sequentially until one is TRUE.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 if (condition1) {
   # execute if condition1 is TRUE
@@ -132,6 +147,7 @@ if (condition1) {
 ```
 
 **Example:**
+
 ```{r}
 a <- 67
 b <- 76
@@ -147,6 +163,7 @@ if (a > b && b > c) {
 ```
 
 **Practical Example: Complete Grade System**
+
 ```{r}
 score <- 78
 
@@ -170,13 +187,14 @@ if (score >= 90) {
 cat(sprintf("Score: %d\nGrade: %s\n%s\n", score, grade, message))
 ```
 
----
+------------------------------------------------------------------------
 
 ### 1.4 Nested if-else Statement
 
 An if-else statement inside another if-else statement.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 if (parent_condition) {
   if (child_condition1) {
@@ -194,6 +212,7 @@ if (parent_condition) {
 ```
 
 **Example:**
+
 ```{r}
 a <- 10
 b <- 11
@@ -214,6 +233,7 @@ if (a == 10) {
 ```
 
 **Practical Example: Login System**
+
 ```{r}
 username <- "admin"
 password <- "pass123"
@@ -233,13 +253,15 @@ if (username == "admin") {
 }
 ```
 
----
+------------------------------------------------------------------------
 
 ### 1.5 switch Statement
 
-Compares an expression against multiple cases and executes matching code.
+Compares an expression against multiple cases and executes matching
+code.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 switch(expression, 
        case1 = result1,
@@ -248,6 +270,7 @@ switch(expression,
 ```
 
 **Example with Numbers:**
+
 ```{r}
 day_num <- 3
 
@@ -265,6 +288,7 @@ print(paste("Day", day_num, "is", day_name))
 ```
 
 **Example with Characters:**
+
 ```{r}
 operation <- "add"
 
@@ -278,7 +302,7 @@ result <- switch(operation,
 print(paste("Result:", result))
 ```
 
----
+------------------------------------------------------------------------
 
 ## 2. Loops in R
 
@@ -289,6 +313,7 @@ Loops allow repetitive execution of code blocks.
 Used when the number of iterations is known beforehand.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 for (value in sequence) {
   # code to execute
@@ -296,6 +321,7 @@ for (value in sequence) {
 ```
 
 **Example 1: Simple Sequence**
+
 ```{r}
 for (val in 1:5) {
   print(val)
@@ -303,6 +329,7 @@ for (val in 1:5) {
 ```
 
 **Example 2: Days of the Week**
+
 ```{r}
 week <- c('Sunday', 'Monday', 'Tuesday', 'Wednesday', 
           'Thursday', 'Friday', 'Saturday')
@@ -313,6 +340,7 @@ for (day in week) {
 ```
 
 **Example 3: Loop on a List**
+
 ```{r}
 my_list <- list(1, 2, 3, 4, 5)
 
@@ -323,6 +351,7 @@ for (i in seq_along(my_list)) {
 ```
 
 **Example 4: Loop on a Matrix**
+
 ```{r}
 my_matrix <- matrix(1:9, nrow = 3)
 print("Matrix:")
@@ -338,6 +367,7 @@ for (i in seq_len(nrow(my_matrix))) {
 ```
 
 **Example 5: Loop on a Data Frame**
+
 ```{r}
 my_dataframe <- data.frame(
   Name = c("Joy", "Juliya", "Boby", "Marry"),
@@ -356,13 +386,15 @@ for (i in seq_len(nrow(my_dataframe))) {
 }
 ```
 
----
+------------------------------------------------------------------------
 
 ### 2.2 while Loop
 
-Runs as long as a condition is TRUE. Number of iterations unknown beforehand.
+Runs as long as a condition is TRUE. Number of iterations unknown
+beforehand.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 while (condition) {
   # code to execute
@@ -370,6 +402,7 @@ while (condition) {
 ```
 
 **Example 1: Display Numbers 1 to 5**
+
 ```{r}
 val <- 1
 while (val <= 5) {
@@ -379,6 +412,7 @@ while (val <= 5) {
 ```
 
 **Example 2: Calculate Factorial**
+
 ```{r}
 n <- 5
 factorial <- 1
@@ -393,6 +427,7 @@ print(paste("Factorial of", n, "is", factorial))
 ```
 
 **Example 3: Input Validation (Simulation)**
+
 ```{r}
 attempts <- 0
 max_attempts <- 3
@@ -416,13 +451,14 @@ if (!success) {
 }
 ```
 
----
+------------------------------------------------------------------------
 
 ### 2.3 repeat Loop
 
 Executes indefinitely until explicitly stopped with `break`.
 
 **Syntax:**
+
 ```{r eval=FALSE}
 repeat {
   # code to execute
@@ -434,6 +470,7 @@ repeat {
 ```
 
 **Example 1: Display Numbers 1 to 5**
+
 ```{r}
 val <- 1
 
@@ -448,11 +485,12 @@ repeat {
 ```
 
 **Example 2: Repeat Statement**
+
 ```{r}
 i <- 0
 
 repeat {
-  print("Geeks 4 geeks!")
+  print("Data 4 Data!")
   i <- i + 1
   
   if (i == 5) {
@@ -462,6 +500,7 @@ repeat {
 ```
 
 **Example 3: Menu System**
+
 ```{r}
 counter <- 0
 
@@ -492,7 +531,7 @@ repeat {
 }
 ```
 
----
+------------------------------------------------------------------------
 
 ## 3. Loop Control Statements
 
@@ -523,182 +562,171 @@ for (i in 1:10) {
 }
 ```
 
----
+------------------------------------------------------------------------
 
 # Part 2: Version Control Systems
 
 ## What is Version Control?
 
-A **Version Control System (VCS)** is a tool that tracks and manages changes to source code over time. It enables:
+A **Version Control System (VCS)** is a tool that tracks and manages
+changes to source code over time. It enables:
 
-- **Change Tracking**: Record every modification to files
-- **Collaboration**: Multiple developers working simultaneously
-- **History Management**: Access to complete project evolution
-- **Reversion**: Ability to restore previous versions
-- **Branching**: Parallel development of features
+-   **Change Tracking**: Record every modification to files
+-   **Collaboration**: Multiple developers working simultaneously
+-   **History Management**: Access to complete project evolution
+-   **Reversion**: Ability to restore previous versions
+-   **Branching**: Parallel development of features
 
----
+------------------------------------------------------------------------
 
 ## Components of Version Control Systems
 
 ### Key Concepts
 
-1. **Repository**: Central storage for all project files and their complete history
-2. **Revision**: A specific saved version of files (identified by unique ID/hash)
-3. **Branch**: Separate line of development for features or fixes
-4. **Merging**: Combining changes from different branches
-5. **Commit**: Snapshot of changes at a specific point in time
+1.  **Repository**: Central storage for all project files and their
+    complete history
+2.  **Revision**: A specific saved version of files (identified by
+    unique ID/hash)
+3.  **Branch**: Separate line of development for features or fixes
+4.  **Merging**: Combining changes from different branches
+5.  **Commit**: Snapshot of changes at a specific point in time
 
----
+------------------------------------------------------------------------
 
 ## Types of Version Control Systems
 
 ### 1. Local Version Control Systems
 
-- Operates entirely on local machine
-- All history stored in local database
-- **Pros**: Simple, no network needed
-- **Cons**: No collaboration, single point of failure
+-   Operates entirely on local machine
+-   All history stored in local database
+-   **Pros**: Simple, no network needed
+-   **Cons**: No collaboration, single point of failure
 
 ### 2. Centralized Version Control Systems (CVCS)
 
 Examples: **SVN (Subversion)**, CVS
 
-**Architecture:**
-- Single central server stores all files
-- Developers check out files from central location
-- Changes committed directly to central server
+**Architecture:** - Single central server stores all files - Developers
+check out files from central location - Changes committed directly to
+central server
 
-**Workflow:**
-1. **Checkout/Update**: Get latest files from server
-2. **Make Changes**: Edit files locally
-3. **Commit**: Save changes to central server
+**Workflow:** 1. **Checkout/Update**: Get latest files from server 2.
+**Make Changes**: Edit files locally 3. **Commit**: Save changes to
+central server
 
-**Pros:**
-- Easy to understand and manage
-- Fine-grained access control
-- Everyone sees what others are doing
+**Pros:** - Easy to understand and manage - Fine-grained access
+control - Everyone sees what others are doing
 
-**Cons:**
-- Single point of failure (server down = no work)
-- Requires network connection
-- Limited offline capabilities
+**Cons:** - Single point of failure (server down = no work) - Requires
+network connection - Limited offline capabilities
 
 ### 3. Distributed Version Control Systems (DVCS)
 
 Examples: **Git**, Mercurial, Bazaar
 
-**Architecture:**
-- Every developer has full repository copy
-- Complete history available locally
-- Changes shared through push/pull
+**Architecture:** - Every developer has full repository copy - Complete
+history available locally - Changes shared through push/pull
 
-**Workflow:**
-1. **Commit**: Save changes to local repository
-2. **Push**: Upload changes to remote repository
-3. **Pull/Fetch**: Download changes from remote repository
+**Workflow:** 1. **Commit**: Save changes to local repository 2.
+**Push**: Upload changes to remote repository 3. **Pull/Fetch**:
+Download changes from remote repository
 
-**Pros:**
-- Fast operations (local)
-- Work offline
-- Multiple backup copies
-- Flexible workflows
-- No single point of failure
+**Pros:** - Fast operations (local) - Work offline - Multiple backup
+copies - Flexible workflows - No single point of failure
 
-**Cons:**
-- Steeper learning curve
-- More complex commands
+**Cons:** - Steeper learning curve - More complex commands
 
----
+------------------------------------------------------------------------
 
 ## Popular Version Control Systems
 
-### 1. Git ⭐ (Most Popular)
+### 1. Git (Most Popular)
 
-- Created by Linus Torvalds (2005)
-- Distributed VCS
-- Fast, efficient, lightweight
-- Excellent branching and merging
-- Powers GitHub, GitLab, Bitbucket
+-   Created by Linus Torvalds (2005)
+-   Distributed VCS
+-   Fast, efficient, lightweight
+-   Excellent branching and merging
+-   Powers GitHub, GitLab, Bitbucket
 
 ### 2. Subversion (SVN)
 
-- Centralized VCS
-- Still widely used in enterprises
-- Simpler than Git for basic use
-- Good for binary files
+-   Centralized VCS
+-   Still widely used in enterprises
+-   Simpler than Git for basic use
+-   Good for binary files
 
 ### 3. Mercurial
 
-- Distributed VCS like Git
-- Simpler interface than Git
-- Good for large projects
-- Used by Facebook, Mozilla (historically)
+-   Distributed VCS like Git
+-   Simpler interface than Git
+-   Good for large projects
+-   Used by Facebook, Mozilla (historically)
 
 ### 4. CVS (Concurrent Versions System)
 
-- One of the earliest VCS
-- Centralized system
-- Legacy system (mostly replaced)
-- Historical importance
+-   One of the earliest VCS
+-   Centralized system
+-   Legacy system (mostly replaced)
+-   Historical importance
 
 ### 5. Bazaar
 
-- Developed by Canonical (Ubuntu creators)
-- Supports both centralized and distributed workflows
-- Beginner-friendly
-- No longer actively developed
+-   Developed by Canonical (Ubuntu creators)
+-   Supports both centralized and distributed workflows
+-   Beginner-friendly
+-   No longer actively developed
 
----
+------------------------------------------------------------------------
 
 # Part 3: Git - The Complete Guide
 
 ## 1. Introduction to Git
 
-**Git** is an open-source **distributed version control system** designed for:
+**Git** is an open-source **distributed version control system**
+designed for:
 
-- Tracking source code changes
-- Coordinating work among multiple developers
-- Managing project versions
-- Supporting non-linear development (branching)
+-   Tracking source code changes
+-   Coordinating work among multiple developers
+-   Managing project versions
+-   Supporting non-linear development (branching)
 
-**Created by**: Linus Torvalds (2005)  
-**Purpose**: Managing Linux kernel development  
+**Created by**: Linus Torvalds (2005)\
+**Purpose**: Managing Linux kernel development\
 **License**: GPL v2 (Free and Open Source)
 
----
+------------------------------------------------------------------------
 
 ## 2. Core Git Concepts
 
 ### Three States of Files
 
-1. **Working Directory**: Where you edit files
-2. **Staging Area (Index)**: Files marked for next commit
-3. **Repository (.git directory)**: Committed and saved permanently
+1.  **Working Directory**: Where you edit files
+2.  **Staging Area (Index)**: Files marked for next commit
+3.  **Repository (.git directory)**: Committed and saved permanently
 
-```
+```         
 Working Directory → (git add) → Staging Area → (git commit) → Repository
 ```
 
 ### Repository Types
 
-- **Local Repository**: On your machine
-- **Remote Repository**: Hosted server (GitHub, GitLab)
-- **Bare Repository**: No working directory (central repos)
+-   **Local Repository**: On your machine
+-   **Remote Repository**: Hosted server (GitHub, GitLab)
+-   **Bare Repository**: No working directory (central repos)
 
----
+------------------------------------------------------------------------
 
 ## 3. Git Environment Setup
 
 ### Installation
 
-**Windows**: Download Git for Windows (includes Git Bash)  
-**Mac**: `brew install git` or download from git-scm.com  
+**Windows**: Download Git for Windows (includes Git Bash)\
+**Mac**: `brew install git` or download from git-scm.com\
 **Linux**: `sudo apt-get install git` (Ubuntu/Debian)
 
 ### Initial Configuration
 
-```bash
+``` bash
 # Set username
 git config --global user.name "Your Name"
 
@@ -715,13 +743,13 @@ git config --global core.editor "vim"
 git config --global init.defaultBranch main
 ```
 
----
+------------------------------------------------------------------------
 
 ## 4. Basic Git Commands
 
 ### Initializing a Repository
 
-```bash
+``` bash
 # Create new repository
 git init
 
@@ -732,7 +760,7 @@ git clone https://github.com/username/repo.git
 
 ### Checking Status
 
-```bash
+``` bash
 # View status of files
 git status
 
@@ -742,7 +770,7 @@ git status -s
 
 ### Adding Files to Staging
 
-```bash
+``` bash
 # Add specific file
 git add filename.R
 
@@ -758,7 +786,7 @@ git add -i
 
 ### Committing Changes
 
-```bash
+``` bash
 # Commit with message
 git commit -m "Your commit message"
 
@@ -771,7 +799,7 @@ git commit --amend -m "Updated message"
 
 ### Viewing History
 
-```bash
+``` bash
 # View commit history
 git log
 
@@ -788,13 +816,13 @@ git log --graph --oneline --all
 git log -- filename.R
 ```
 
----
+------------------------------------------------------------------------
 
 ## 5. Working with Remote Repositories
 
 ### Managing Remotes
 
-```bash
+``` bash
 # View remote repositories
 git remote -v
 
@@ -810,7 +838,7 @@ git remote rename origin upstream
 
 ### Pushing Changes
 
-```bash
+``` bash
 # Push to remote
 git push origin main
 
@@ -826,7 +854,7 @@ git push --force
 
 ### Pulling Changes
 
-```bash
+``` bash
 # Fetch and merge changes
 git pull origin main
 
@@ -837,13 +865,13 @@ git fetch origin
 git pull --rebase origin main
 ```
 
----
+------------------------------------------------------------------------
 
 ## 6. Branching and Merging
 
 ### Branch Management
 
-```bash
+``` bash
 # Create new branch
 git branch feature-branch
 
@@ -871,7 +899,7 @@ git push origin --delete feature-branch
 
 ### Merging
 
-```bash
+``` bash
 # Merge branch into current branch
 git merge feature-branch
 
@@ -884,7 +912,7 @@ git merge --abort
 
 ### Handling Merge Conflicts
 
-```bash
+``` bash
 # 1. Git will mark conflicts in files
 # 2. Open conflicted files and resolve manually
 # 3. Add resolved files
@@ -896,7 +924,7 @@ git commit
 
 ### Rebasing
 
-```bash
+``` bash
 # Rebase current branch onto main
 git rebase main
 
@@ -910,13 +938,13 @@ git rebase --continue
 git rebase --abort
 ```
 
----
+------------------------------------------------------------------------
 
 ## 7. Advanced Git Commands
 
 ### Viewing Differences
 
-```bash
+``` bash
 # Changes in working directory
 git diff
 
@@ -932,7 +960,7 @@ git diff filename.R
 
 ### Undoing Changes
 
-```bash
+``` bash
 # Discard changes in working directory
 git restore filename.R
 git checkout -- filename.R  # old way
@@ -952,7 +980,7 @@ git reset --hard HEAD~1  # discard changes (⚠️ dangerous!)
 
 ### Stashing Changes
 
-```bash
+``` bash
 # Save work temporarily
 git stash
 
@@ -974,7 +1002,7 @@ git stash clear
 
 ### Tagging
 
-```bash
+``` bash
 # Create lightweight tag
 git tag v1.0
 
@@ -995,14 +1023,15 @@ git tag -d v1.0
 git push origin --delete v1.0
 ```
 
----
+------------------------------------------------------------------------
 
 ## 8. Git Best Practices
 
 ### Commit Messages
 
 **Good commit message format:**
-```
+
+```         
 Short summary (50 chars or less)
 
 Detailed explanation if needed. Wrap at 72 characters.
@@ -1013,7 +1042,8 @@ Explain what and why, not how.
 ```
 
 **Examples:**
-```bash
+
+``` bash
 git commit -m "Add data validation function for user input"
 git commit -m "Fix bug in date parsing for CSV imports"
 git commit -m "Update README with installation instructions"
@@ -1023,27 +1053,25 @@ git commit -m "Update README with installation instructions"
 
 **Common strategies:**
 
-1. **Git Flow**:
-   - `main`: Production code
-   - `develop`: Integration branch
-   - `feature/*`: New features
-   - `hotfix/*`: Emergency fixes
+1.  **Git Flow**:
+    -   `main`: Production code
+    -   `develop`: Integration branch
+    -   `feature/*`: New features
+    -   `hotfix/*`: Emergency fixes
+2.  **GitHub Flow**:
+    -   `main`: Always deployable
+    -   `feature/*`: All development
+3.  **Trunk-Based Development**:
+    -   `main`: Single integration branch
+    -   Short-lived feature branches
 
-2. **GitHub Flow**:
-   - `main`: Always deployable
-   - `feature/*`: All development
-
-3. **Trunk-Based Development**:
-   - `main`: Single integration branch
-   - Short-lived feature branches
-
----
+------------------------------------------------------------------------
 
 ## 9. Git with R Programming
 
 ### Tracking R Projects
 
-```bash
+``` bash
 # Initialize R project with Git
 git init
 
@@ -1062,7 +1090,7 @@ git commit -m "Initial commit of R project"
 
 ### Example .gitignore for R Projects
 
-```
+```         
 # R specific
 .Rproj.user
 .Rhistory
@@ -1089,64 +1117,61 @@ Thumbs.db
 
 RStudio has built-in Git integration:
 
-1. **Tools** → **Version Control** → **Project Setup**
-2. Use Git pane for staging, committing
-3. Visual diff viewer
-4. Branch management
-5. Push/pull buttons
+1.  **Tools** → **Version Control** → **Project Setup**
+2.  Use Git pane for staging, committing
+3.  Visual diff viewer
+4.  Branch management
+5.  Push/pull buttons
 
----
+------------------------------------------------------------------------
 
 # Part 4: GitHub
 
 ## What is GitHub?
 
-**GitHub** is a web-based platform for hosting Git repositories and collaborating on code.
+**GitHub** is a web-based platform for hosting Git repositories and
+collaborating on code.
 
 ### Git vs GitHub
 
-| Feature | Git | GitHub |
-|---------|-----|--------|
-| Type | Version control tool | Hosting service |
-| Location | Local computer | Cloud-based |
-| Purpose | Track changes | Collaboration platform |
-| Access | Command line/GUI | Web interface + Git |
-| Created by | Linus Torvalds | Chris Wanstrath, et al. |
-| Owned by | Linux community | Microsoft |
+| Feature    | Git                  | GitHub                  |
+|------------|----------------------|-------------------------|
+| Type       | Version control tool | Hosting service         |
+| Location   | Local computer       | Cloud-based             |
+| Purpose    | Track changes        | Collaboration platform  |
+| Access     | Command line/GUI     | Web interface + Git     |
+| Created by | Linus Torvalds       | Chris Wanstrath, et al. |
+| Owned by   | Linux community      | Microsoft               |
 
----
+------------------------------------------------------------------------
 
 ## GitHub Features
 
 ### Core Features
 
-1. **Repository Hosting**: Store and manage Git repositories
-2. **Collaboration**: Pull requests, code reviews
-3. **Issue Tracking**: Bug reports, feature requests
-4. **Project Management**: Kanban boards, milestones
-5. **Actions**: CI/CD automation
-6. **Pages**: Host static websites
-7. **Wikis**: Documentation
-8. **Security**: Dependency scanning, secret detection
+1.  **Repository Hosting**: Store and manage Git repositories
+2.  **Collaboration**: Pull requests, code reviews
+3.  **Issue Tracking**: Bug reports, feature requests
+4.  **Project Management**: Kanban boards, milestones
+5.  **Actions**: CI/CD automation
+6.  **Pages**: Host static websites
+7.  **Wikis**: Documentation
+8.  **Security**: Dependency scanning, secret detection
 
----
+------------------------------------------------------------------------
 
 ## Working with GitHub
 
 ### Creating a Repository
 
-**On GitHub:**
-1. Click "New repository"
-2. Enter repository name
-3. Add description (optional)
-4. Choose public/private
-5. Initialize with README (optional)
-6. Add .gitignore template
-7. Choose license
-8. Click "Create repository"
+**On GitHub:** 1. Click "New repository" 2. Enter repository name 3. Add
+description (optional) 4. Choose public/private 5. Initialize with
+README (optional) 6. Add .gitignore template 7. Choose license 8. Click
+"Create repository"
 
 **From Command Line:**
-```bash
+
+``` bash
 # Create local repo
 git init
 git add .
@@ -1159,7 +1184,7 @@ git push -u origin main
 
 ### Cloning a Repository
 
-```bash
+``` bash
 # Clone repository
 git clone https://github.com/username/repo.git
 
@@ -1174,18 +1199,23 @@ git clone https://github.com/username/repo.git my-folder
 
 **Fork** = Personal copy of someone else's repository
 
-1. Click "Fork" on GitHub
-2. Clone your fork
-```bash
+1.  Click "Fork" on GitHub
+2.  Clone your fork
+
+``` bash
 git clone https://github.com/your-username/repo.git
 cd repo
 ```
-3. Add upstream remote
-```bash
+
+3.  Add upstream remote
+
+``` bash
 git remote add upstream https://github.com/original-owner/repo.git
 ```
-4. Keep fork updated
-```bash
+
+4.  Keep fork updated
+
+``` bash
 git fetch upstream
 git merge upstream/main
 ```
@@ -1194,31 +1224,30 @@ git merge upstream/main
 
 **Creating a Pull Request:**
 
-1. Create and push feature branch
-```bash
+1.  Create and push feature branch
+
+``` bash
 git checkout -b feature-branch
 # make changes
 git push origin feature-branch
 ```
-2. Go to GitHub repository
-3. Click "New pull request"
-4. Select base and compare branches
-5. Add title and description
-6. Click "Create pull request"
 
-**Reviewing Pull Requests:**
-- Review code changes
-- Add comments
-- Approve or request changes
-- Merge when approved
+2.  Go to GitHub repository
+3.  Click "New pull request"
+4.  Select base and compare branches
+5.  Add title and description
+6.  Click "Create pull request"
 
----
+**Reviewing Pull Requests:** - Review code changes - Add comments -
+Approve or request changes - Merge when approved
+
+------------------------------------------------------------------------
 
 ## GitHub Best Practices
 
 ### README.md Template
 
-```markdown
+``` markdown
 # Project Title
 
 Brief description of project
@@ -1247,13 +1276,13 @@ MIT License
 
 ### Contributing Guidelines
 
-1. **Fork** the repository
-2. **Create** feature branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** changes (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** to branch (`git push origin feature/AmazingFeature`)
-5. **Open** Pull Request
+1.  **Fork** the repository
+2.  **Create** feature branch (`git checkout -b feature/AmazingFeature`)
+3.  **Commit** changes (`git commit -m 'Add some AmazingFeature'`)
+4.  **Push** to branch (`git push origin feature/AmazingFeature`)
+5.  **Open** Pull Request
 
----
+------------------------------------------------------------------------
 
 # Part 5: Git in CI/CD and Deployment
 
@@ -1261,12 +1290,12 @@ MIT License
 
 ### What is CI/CD?
 
-- **CI**: Automatically test code when pushed
-- **CD**: Automatically deploy code when tests pass
+-   **CI**: Automatically test code when pushed
+-   **CD**: Automatically deploy code when tests pass
 
 ### GitHub Actions Example
 
-```yaml
+``` yaml
 # .github/workflows/r-check.yml
 name: R-CMD-check
 
@@ -1287,27 +1316,27 @@ jobs:
         shell: Rscript {0}
 ```
 
----
+------------------------------------------------------------------------
 
 # Summary and Key Takeaways
 
 ## Control Flow
 
-- **if/else**: Decision making based on conditions
-- **for loop**: Known number of iterations
-- **while loop**: Condition-based repetition
-- **repeat loop**: Infinite loop with manual break
-- **switch**: Multiple case handling
+-   **if/else**: Decision making based on conditions
+-   **for loop**: Known number of iterations
+-   **while loop**: Condition-based repetition
+-   **repeat loop**: Infinite loop with manual break
+-   **switch**: Multiple case handling
 
 ## Version Control
 
-- **Local VCS**: Single machine, no collaboration
-- **Centralized VCS**: Single server, central authority (SVN)
-- **Distributed VCS**: Multiple copies, flexible workflow (Git)
+-   **Local VCS**: Single machine, no collaboration
+-   **Centralized VCS**: Single server, central authority (SVN)
+-   **Distributed VCS**: Multiple copies, flexible workflow (Git)
 
 ## Git Essentials
 
-```bash
+``` bash
 # Basic workflow
 git init                    # Initialize
 git add .                   # Stage changes
@@ -1323,80 +1352,71 @@ git branch -d feature       # Delete branch
 
 ## GitHub Workflow
 
-1. **Fork** repository
-2. **Clone** to local
-3. **Branch** for features
-4. **Commit** changes
-5. **Push** to GitHub
-6. **Pull Request** for review
-7. **Merge** after approval
+1.  **Fork** repository
+2.  **Clone** to local
+3.  **Branch** for features
+4.  **Commit** changes
+5.  **Push** to GitHub
+6.  **Pull Request** for review
+7.  **Merge** after approval
 
----
+------------------------------------------------------------------------
 
 # Practical Exercises
 
 ## Exercise 1: Control Flow
 
-Create a grade calculator that:
-- Takes a score input
-- Uses if-else-if to assign letter grade
-- Uses switch to assign GPA
-- Prints formatted result
+Create a grade calculator that: - Takes a score input - Uses if-else-if
+to assign letter grade - Uses switch to assign GPA - Prints formatted
+result
 
 ## Exercise 2: Loops
 
-Write R code to:
-- Calculate Fibonacci sequence (for loop)
-- Find prime numbers (while loop)
-- Create menu system (repeat loop)
+Write R code to: - Calculate Fibonacci sequence (for loop) - Find prime
+numbers (while loop) - Create menu system (repeat loop)
 
 ## Exercise 3: Git Practice
 
-1. Create new R project
-2. Initialize Git repository
-3. Create multiple commits
-4. Create and merge feature branch
-5. Push to GitHub
+1.  Create new R project
+2.  Initialize Git repository
+3.  Create multiple commits
+4.  Create and merge feature branch
+5.  Push to GitHub
 
 ## Exercise 4: Collaboration
 
-1. Fork a public R repository
-2. Clone to local
-3. Create feature branch
-4. Make improvements
-5. Submit pull request
+1.  Fork a public R repository
+2.  Clone to local
+3.  Create feature branch
+4.  Make improvements
+5.  Submit pull request
 
----
+------------------------------------------------------------------------
 
 # Additional Resources
 
 ## Documentation
 
-- [Git Official Documentation](https://git-scm.com/doc)
-- [GitHub Guides](https://guides.github.com/)
-- [R for Data Science](https://r4ds.had.co.nz/)
-- [Happy Git with R](https://happygitwithr.com/)
+-   [Git Official Documentation](https://git-scm.com/doc)
+-   [GitHub Guides](https://guides.github.com/)
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   [Happy Git with R](https://happygitwithr.com/)
 
 ## Cheat Sheets
 
-- [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-- [GitHub Flow](https://guides.github.com/introduction/flow/)
-- [R Programming Cheat Sheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+-   [Git Cheat
+    Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+-   [GitHub Flow](https://guides.github.com/introduction/flow/)
+-   [R Programming Cheat
+    Sheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 
 ## Online Tutorials
 
-- [Learn Git Branching](https://learngitbranching.js.org/)
-- [GitHub Learning Lab](https://lab.github.com/)
-- [Codecademy Git Course](https://www.codecademy.com/learn/learn-git)
+-   [Learn Git Branching](https://learngitbranching.js.org/)
+-   [GitHub Learning Lab](https://lab.github.com/)
+-   [Codecademy Git Course](https://www.codecademy.com/learn/learn-git)
 
----
-
-```{r}
-# Session Info
-sessionInfo()
-```
-
----
+------------------------------------------------------------------------
 
 **End of Notes**
 
